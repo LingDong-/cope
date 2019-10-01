@@ -1,0 +1,179 @@
+body{
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0px;
+  margin: 0px;
+  font-family: sans-serif;
+  font-size: 12px;
+  overflow: hidden;
+}
+.titleBar{
+  background: var(--color-bg);
+  color: var(--color-text-dim);
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+  text-align: center;
+  padding: 5px;
+  position: absolute;
+  z-index: 1000;
+}
+.main{
+  position: absolute;
+  top: 60px;
+  width: calc(100% - 40px);
+  height: calc(100% - 60px);
+  overflow: scroll;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.cell{
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-width: 480px;
+  max-width: 1000px;
+  border-radius: 4px;
+}
+.cellInner{
+  width:100%;
+  min-height: 200px;
+  border-collapse: collapse;
+}
+.cellInnerEmpty{
+  min-height: 50px;
+  height:50px !important;
+}
+.textArea{
+  color: var(--color-text);
+  background: var(--color-textarea-bg);
+  width: calc(50% - 20px);
+  min-height: 190px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 3px 0px 0px 3px;
+  font-family: monospace;
+  font-size: 16px;
+  vertical-align: top;
+  box-shadow: -2px 0px 3px rgba(0,0,0,0.2) inset;
+  line-height: 22px;
+  letter-spacing: 2px;
+  word-break: break-all;
+}
+.textArea:focus {
+  outline: none;
+  box-shadow: -2px 0px 3px rgba(0,0,0,0.2) inset, 0px 0px 0px 1px var(--color-border-focus);
+}
+.textArea:hover {
+  box-shadow: -3px 0px 3px rgba(0,0,0,0.2) inset, 0px 0px 0px 1px var(--color-border-hover);
+}
+.preview{
+  position: relative;
+  width: calc(50%);
+  height:100%;
+  vertical-align: top;
+  padding-left: 10px;
+  padding-top: 5px;
+  white-space: nowrap;
+  min-width: 320px !important;
+}
+.charCellWrapper{
+  display: inline-block;
+}
+.charCell{
+  display:block;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border: 1px solid var(--color-cell-border);
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  font-family: monospace;
+  margin: 2px;
+  padding: 6px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.charCellFilled{
+  color: var(--color-text-hl);
+}
+.charCellEmpty{
+  color: var(--color-icon-hint);
+}
+.meterIconWrapper{
+  position: absolute;
+  left:8px;
+  top:8px;
+}
+.meterIconWrapperCorner{
+  position: absolute;
+  left:23px;
+  top:-7px;
+}
+.meterMsg{
+  position: absolute;
+  right: 0px;
+  font-size: 10px;
+}
+.meterMsgErr{
+  color: var(--color-error);
+  background: var(--color-error-bg);
+}
+.meterMsgWarn{
+  color: var(--color-warn);
+  background: var(--color-warn-bg);
+}
+.drawLine{
+  position:absolute;
+  height: 1px;
+  transform-origin: top left;
+}
+.drawLineWarn{
+  background: var(--color-warn-line);
+}
+.drawLineErr{
+  background: var(--color-error-line);
+}
+.ribbon{
+  text-align: left;
+  padding: 12px;
+  padding-bottom: 8px;
+}
+.selectRhymebook{
+  
+}
+select{
+  display: inline-block;
+  -webkit-app-region: no-drag;
+  background-color: var(--color-button-bg);
+  color: var(--color-text);
+  border-radius: 3px;
+  height: 22px !important;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+  margin: 2px;
+  padding-left: 100px;
+  padding-right: 10px;
+  outline: none;
+  font-family: sans-serif;
+  font-size: 12px;
+}
