@@ -59,15 +59,23 @@ function updateViewRhymeGroup(){
   var div = document.getElementsByClassName("panelMain")[0]
   var sel = document.getElementsByClassName("selectRhymeGroup")[0]
   var inp = document.getElementsByClassName("searchInput")[0]
+  var dic = document.getElementsByClassName("panelDict")[0]
 
   var [i,j] = sel.value.split(",");
-  div.innerHTML = RHYMEBOOKS[rhymebookDom.value][i][j].split('').map(function(x){
+  div.innerHTML = "";
+  RHYMEBOOKS[rhymebookDom.value][i][j].split('').map(function(x){
+    var sp = document.createElement("span");
+    sp.classList.add("panelChar")
     if (x==inp.value){
-      return `<span style="color:var(--color-text-hl)"><b>${x}</b></span>`
-    }else{
-      return x;
+      sp.style = `color:var(--color-text-hl); font-weight:bold;`;
     }
-  }).join(" ");
+    sp.innerHTML = x;
+    sp.onclick = function(){
+      var expl = KANGXI[x] || "查无此字"
+      dic.innerHTML = `<span style="color:var(--color-text-hl)">${x}</span>&nbsp;`+expl;
+    }
+    div.appendChild(sp);
+  });
 }
 function updateSearchForRhymeGroup(){
   
@@ -139,6 +147,7 @@ function onTextFocus(that){
     var idx = cellDoms.map(x=>x.getElementsByClassName("textArea")[0]).indexOf(that);
     meterDom.value = notebook.cells[idx].meter;
     rhymebookDom.value = notebook.cells[idx].rhymebook;
+    updateSelectRhymeGroup();
   }
   bogusFocusChange = false;
 }
@@ -251,7 +260,7 @@ function updateCell(idx){
     for (var j = 0; j < meterLines[i].length; j++){
       var filled = (j < chars.length && chars[j].trim().length)
 
-      var m = filled ? getTonePattern(RHYMEBOOKS[notebook.cells[idx].rhymebook],chars[j])
+      var m = filled ? getTonePattern(RHYMEBOOKS[notebook.cells[idx].rhymebook],filterTraditionalChars(chars[j]))
                      : parseInt(meterLines[i][j]);
 
       var icon;

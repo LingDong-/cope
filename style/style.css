@@ -41,6 +41,7 @@ body{
   width:200px;
   height: calc(100% - 60px);
   transition: width 0.2s;
+  min-height: 300px;
 }
 
 .panelHidden{
@@ -50,6 +51,7 @@ body{
 .panelInner{
   width: 180px;
   margin: 10px 20px 10px 0px;
+  height: calc(100% - 25px);
   overflow: hidden;
   white-space: nowrap;
 }
@@ -235,8 +237,31 @@ input:focus {
   color: var(--color-text-dim);
   white-space: normal;
   word-break: break-all;
-  height: auto;
+  height: calc(100% - 220px);
   padding: 5px;
   padding-left: 10px;
   font-size: 14px;
+  overflow: scroll;
+  box-shadow: 0px -2px 3px rgba(0,0,0,0.2) inset;
+}
+
+.panelDict{
+  color: var(--color-text-dim);
+  position: absolute;
+  left:0px;
+  bottom:12px;
+  width:calc(100% - 20px) !important;
+  height: 180px;
+  overflow: scroll;
+  white-space: normal;
+  word-break: break-all;
+  font-size: 10px;
+}
+
+.panelChar{
+  cursor: pointer;
+}
+.panelChar:hover{
+  color: var(--color-text);
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
 }

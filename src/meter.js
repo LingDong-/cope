@@ -60,11 +60,26 @@ function getRhymeGroupMode(book,chrs){
   return mk;
 }
 
+
+function filterTraditionalChars(text){
+  var out = ""
+  for (const chr of text){
+    var sc = TC2SC[chr]
+    if (sc){
+      out += sc
+    }else{
+      out += chr
+    }
+  }
+  return out;
+}
+
 function splitTextToLines(text){
-  return text.replace(/[。，？！\n]/g,"\n").split("\n").filter(x=>x.length);
+  return text.replace(/[。，？！\n]/g,"\n").split("\n").filter(x=>x.length && !x.startsWith("#"));
 }
 
 function checkMeter(rhymebook,meter,text){
+  text = filterTraditionalChars(text);
   var meterLines = meter.split(",")
   var textLines = splitTextToLines(text);
 
