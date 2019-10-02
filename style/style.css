@@ -27,7 +27,33 @@ body{
   overflow: scroll;
   padding-left: 20px;
   padding-right: 20px;
+  transition: width 0.2s;
 }
+.mainSided{
+  width: calc(100% - 240px);
+}
+
+.panel{
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  overflow: scroll;
+  width:200px;
+  height: calc(100% - 60px);
+  transition: width 0.2s;
+}
+
+.panelHidden{
+  width:0px;
+}
+
+.panelInner{
+  width: 180px;
+  margin: 10px 20px 10px 0px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .noSelect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -156,10 +182,8 @@ body{
   padding: 12px;
   padding-bottom: 8px;
 }
-.selectRhymebook{
-  
-}
-select{
+
+select, button{
   display: inline-block;
   -webkit-app-region: no-drag;
   background-color: var(--color-button-bg);
@@ -171,9 +195,48 @@ select{
   border-bottom: 1px solid rgba(0,0,0,0.15);
   box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
   margin: 2px;
-  padding-left: 100px;
+  padding-left:  10px;
   padding-right: 10px;
   outline: none;
   font-family: sans-serif;
   font-size: 12px;
+}
+button:active{
+  background-color: var(--color-button-active);
+}
+
+input {
+  color: var(--color-text);
+  background: var(--color-textarea-bg);
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px 2px 2px 2px;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+input:focus {
+  outline: none;
+  box-shadow: -2px 0px 3px rgba(0,0,0,0.2) inset, 0px 0px 0px 1px var(--color-border-focus);
+}
+
+.btnOpenPanel{
+  float: right;
+  margin-right: 10px;
+  padding-top: 4px;
+}
+
+.searchInput{
+  transform: translate(4px,2px);
+  width: 120px;
+}
+
+.panelMain{
+  color: var(--color-text-dim);
+  white-space: normal;
+  word-break: break-all;
+  height: auto;
+  padding: 5px;
+  padding-left: 10px;
+  font-size: 14px;
 }

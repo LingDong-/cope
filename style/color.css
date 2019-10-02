@@ -17,6 +17,7 @@
   --color-error-line: rgba(255,100,100,0.4);
   --color-warn-line: rgba(255,240,50,0.4);
   --color-button-bg: rgb(40,43,46);
+  --color-button-active: rgb(41,82,185);
 }
 
 /*:root {

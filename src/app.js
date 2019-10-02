@@ -2,7 +2,9 @@ var notebook;
 var cellDoms = [];
 var lastFocusTextDom = undefined;
 var bogusFocusChange = false;
+var panelOpen = false;
 
+var mainDom = document.getElementsByClassName("main")[0];
 
 var meterDom = document.getElementsByClassName("selectMeter")[0];
 meterDom.onchange = function(){
@@ -26,6 +28,7 @@ rhymebookDom.onchange = function(){
     lastFocusTextDom.focus();
     notebook.cells[getCurrentCellIndex()].rhymebook = rhymebookDom.value
   }
+  updateSelectRhymeGroup();
 }
 for (var k in RHYMEBOOKS){
   var op = document.createElement('option');
@@ -34,11 +37,90 @@ for (var k in RHYMEBOOKS){
   rhymebookDom.appendChild(op);
 }
 
+
+function updateSelectRhymeGroup(){
+  var sel = document.getElementsByClassName("selectRhymeGroup")[0]
+  sel.innerHTML = "";
+  var book = RHYMEBOOKS[rhymebookDom.value]
+  for (var i = 0; i < book.length; i++){
+    for (var j = 0; j < book[i].length; j++){
+      var k = book[i][j][0];
+      var op = document.createElement('option');
+      op.innerHTML = k
+      op.value = i+","+j
+      sel.appendChild(op);
+    }
+  }
+  updateViewRhymeGroup();
+  sel.onchange = updateViewRhymeGroup;
+}
+
+function updateViewRhymeGroup(){
+  var div = document.getElementsByClassName("panelMain")[0]
+  var sel = document.getElementsByClassName("selectRhymeGroup")[0]
+  var inp = document.getElementsByClassName("searchInput")[0]
+
+  var [i,j] = sel.value.split(",");
+  div.innerHTML = RHYMEBOOKS[rhymebookDom.value][i][j].split('').map(function(x){
+    if (x==inp.value){
+      return `<span style="color:var(--color-text-hl)"><b>${x}</b></span>`
+    }else{
+      return x;
+    }
+  }).join(" ");
+}
+function updateSearchForRhymeGroup(){
+  
+  var inp = document.getElementsByClassName("searchInput")[0]
+  var sel = document.getElementsByClassName("selectRhymeGroup")[0]
+
+  var book = RHYMEBOOKS[rhymebookDom.value]
+  for (var i = 0; i < book.length; i++){
+    for (var j = 0; j < book[i].length; j++){
+      var k = book[i][j].indexOf(inp.value[0])
+      if (k != -1){
+        sel.value = i+","+j
+        break
+      }
+    }
+  }
+  updateViewRhymeGroup();
+}
+var cachedSearchRhymeGroupValue = "";
+setInterval(function(){
+  var inp = document.getElementsByClassName("searchInput")[0]
+  if (inp.value.length && inp.value != cachedSearchRhymeGroupValue){
+    cachedSearchRhymeGroupValue = inp.value
+    updateViewRhymeGroup();
+  }
+},100)
+document.getElementsByClassName("searchInput")[0].onchange = updateSearchForRhymeGroup;
+updateSelectRhymeGroup();
+
+
+
+var btnOpenPanel = document.getElementsByClassName("btnOpenPanel")[0];
+var panelDom = document.getElementsByClassName("panel")[0]
+var iconLeft = makeIcon({name:"left",width:12,height:12,stroke:5,color:"--color-text-dim"});
+var iconRight = makeIcon({name:"right",width:12,height:12,stroke:5,color:"--color-text-dim"});
+btnOpenPanel.innerHTML = iconLeft
+btnOpenPanel.onclick = function(){
+  panelOpen = !panelOpen;
+  if (panelOpen){
+    btnOpenPanel.innerHTML = iconRight;
+    panelDom.classList.remove("panelHidden")
+    mainDom.classList.add("mainSided");
+  }else{
+    btnOpenPanel.innerHTML = iconLeft;
+    panelDom.classList.add("panelHidden")
+    mainDom.classList.remove("mainSided");
+  }
+}
 function loadNotebook(path){
   notebook = loadJSON(path);
   cellDoms = []
   lastFocusTextDom = undefined;
-  document.getElementsByClassName("main")[0].innerHTML = "";
+  mainDom.innerHTML = "";
   for (var i = 0; i < notebook.cells.length; i++){
     insertCellFromNotebook(cellDoms.length, notebook.cells[i]);
   }
@@ -97,9 +179,9 @@ function insertCellFromNotebook(idx,cell){
     }
   })
   if (!cellDoms.length){
-    document.getElementsByClassName("main")[0].appendChild(cellDom);
+    mainDom.appendChild(cellDom);
   }else{
-    document.getElementsByClassName("main")[0].insertBefore(cellDom,cellDoms[idx]);
+    mainDom.insertBefore(cellDom,cellDoms[idx]);
   }
   cellDoms.splice(idx,0,cellDom);
   return cellDom
@@ -114,7 +196,7 @@ function insertCell(idx,text){
 
 var menuFunctions = {
   removeCell: function(idx){
-    document.getElementsByClassName("main")[0].removeChild(cellDoms[idx])
+    mainDom.removeChild(cellDoms[idx])
     notebook.cells.splice(idx,1);
     cellDoms.splice(idx,1);
   },

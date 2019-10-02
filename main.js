@@ -15,6 +15,7 @@ function createWindow () {
     height: 600,
     useContentSize:true,
     titleBarStyle: 'hidden',
+    backgroundColor: '#1e2124',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
