@@ -28,11 +28,16 @@ Finally, `npm start` to run the app.
 
 ## Usage 使用
 
-|              |   |
-:-------------------------:|:-------------------------:
-![](screenshots/screenshot06.png)  |  Click on left side of a cell to edit its contents. The tonal pattern hints will be shown on the right. Select rhyming dictionary and verse form from the tool bar. New cells will be automatically added once you filled up empty cells, or, you can manage them by clicking `Cells` from the menu bar. Add comments/title/attribution to your poem by preceding a line with a octothorpe (`#`).
-![](screenshots/screenshot08.png)  |  Before you fill in a character, it's correct tonal pattern is shown on the right in the corresponding position. After you do so, a color-coded icon is shown on the upper right corner, indicating the tonal pattern of the character, and whether it is acceptable, along with a line pointing to the error message if it is not. The checker follows the general rule of "一三五不论", yet also ensures that "孤平" and "三平调" errors do not occur. The rhyme of the poem is automatically inferred, and checked agianst each character that need to rhyme.
-![](screenshots/screenshot07.png)  |  You can open the rhyming dictionary as well as Kang Xi dictionary by clicking on `<` button on the right side of the tool bar. Type a character in the search bar, and it will be highlighted if it is in the current rhyme group. Press `Enter` to jump to the rhyme group it belongs to. Click on a character in the group to show its definition in Kang Xi dictionary.
+![](screenshots/screenshot06.png)
+
+ Click on left side of a cell to edit its contents. The tonal pattern hints will be shown on the right. Select rhyming dictionary and verse form from the tool bar. New cells will be automatically added once you filled up empty cells, or, you can manage them by clicking `Cells` from the menu bar. Add comments/title/attribution to your poem by preceding a line with a octothorpe (`#`).
+![](screenshots/screenshot08.png)
+
+Before you fill in a character, it's correct tonal pattern is shown on the right in the corresponding position. After you do so, a color-coded icon is shown on the upper right corner, indicating the tonal pattern of the character, and whether it is acceptable, along with a line pointing to the error message if it is not. The checker follows the general rule of "一三五不论", yet also ensures that "孤平" and "三平调" errors do not occur. The rhyme of the poem is automatically inferred, and checked agianst each character that need to rhyme.
+
+![](screenshots/screenshot07.png)
+
+You can open the rhyming dictionary as well as Kang Xi dictionary by clicking on `<` button on the right side of the tool bar. Type a character in the search bar, and it will be highlighted if it is in the current rhyme group. Press `Enter` to jump to the rhyme group it belongs to. Click on a character in the group to show its definition in Kang Xi dictionary.
 
 ## Poem Analysis Tools 分析工具
 
