@@ -1,5 +1,5 @@
 # COPE - 格律诗编辑程序
-**C**hinese **O**ld **P**oem **E**ditor - An modern IDE for writing [classical Chinese poetry](https://en.wikipedia.org/wiki/Classical_Chinese_poetry).
+**C**hinese **O**ld **P**oem **E**ditor - A modern IDE for writing [classical Chinese poetry](https://en.wikipedia.org/wiki/Classical_Chinese_poetry).
 
 ![](screenshots/screenshot01.png)
 
