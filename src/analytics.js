@@ -1,7 +1,7 @@
 const {UMAP} = require('umap-js');
 var distMetric = "euc"//"chi2"
-var poetsBow = loadJSON("data/poets-bow.json")
-var charsFreq = loadTSV("data/chars-freq.tsv")
+var poetsBow = loadJSON("/data/poets-bow.json")
+var charsFreq = loadTSV("/data/chars-freq.tsv")
 var charsOI = charsFreq.map(x=>x[0]);
 var poemLines = undefined
 
@@ -260,7 +260,7 @@ progressDiv.classList.add("progressBar");
 
 if (options.op == "EMBEDBOW"){
   poetsBow = Object.fromEntries(Object.entries(poetsBow).slice(0,NP));
-  var text = splitTextToLines(notebook.cells[getCurrentCellIndex()].text).join('')
+  var text = splitTextToLines(options.q).join('')
   var bow = makeBow(filterTraditionalChars(text))
 
   var embedDiv = document.createElement("div");
@@ -281,7 +281,7 @@ if (options.op == "EMBEDBOW"){
 
 }else if (options.op == "LINENN"){
   if (poemLines == undefined){
-    poemLines = loadJSON("data/quantang-lines.json")
+    poemLines = loadJSON("/data/quantang-lines.json")
   }
   doLineNN(options.q);
   

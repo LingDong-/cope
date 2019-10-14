@@ -3,7 +3,9 @@ const { Menu, MenuItem } = remote
 
 const template = [
   { role: 'appMenu' },
-  { role: 'fileMenu' },
+  { role: 'fileMenu', submenu: [
+    {label: "Load/Create New Notebook"}
+  ]},
   { role: 'editMenu' },
   {
     label: "Cells",

@@ -68,7 +68,7 @@ function makeIcon(args){
 }
 
 
-const METERS = loadJSON("./data/meters.json");
-const RHYMEBOOKS = loadJSON("./data/rhymebooks.json");
-const KANGXI = loadJSON("./data/kangxi.json")
-const TC2SC = loadJSON("./data/TC2SC.json")
+const METERS = loadJSON("/data/meters.json");
+const RHYMEBOOKS = loadJSON("/data/rhymebooks.json");
+const KANGXI = loadJSON("/data/kangxi.json")
+const TC2SC = loadJSON("/data/TC2SC.json")

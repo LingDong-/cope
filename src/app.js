@@ -140,7 +140,7 @@ function loadNotebook(path){
   console.log(notebook)
 }
 
-loadNotebook("savefiles/mypoems.json")
+loadNotebook("/savefiles/mypoems.json")
 
 function onTextFocus(that){
   console.log(JSON.stringify(notebook),that)
