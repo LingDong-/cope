@@ -13,6 +13,13 @@ const template = [
       {label: "Delete Cell", click:menuFunctions.deleteCell},
     ]
   },
+  {
+    label: "Analytics",
+    submenu: [
+      {label: "Bag-of-Words Embedding",click:menuFunctions.embedBow},
+      {label: "Line-wise Nearest Neighbor",click:menuFunctions.lineNN},
+    ]
+  },
   { role: 'viewMenu' },
   { role: 'windowMenu' },
   { role: 'help' },

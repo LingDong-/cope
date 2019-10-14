@@ -102,7 +102,8 @@ setInterval(function(){
     updateViewRhymeGroup();
   }
 },100)
-document.getElementsByClassName("searchInput")[0].onchange = updateSearchForRhymeGroup;
+document.getElementsByClassName("searchInput")[0].onkeypress = function(e){if (e.key=="Enter"){updateSearchForRhymeGroup()}};
+document.getElementsByClassName("searchInput")[0].onfocus = function(){bogusFocusChange = true}
 updateSelectRhymeGroup();
 
 
@@ -223,7 +224,13 @@ var menuFunctions = {
     if (confirm("This action is not undoable. 此操作不容悔改。")){
       removeCell(Math.min(0,cellDoms.indexOf(lastFocusTextDom)));
     }
-  }
+  },
+  embedBow: function(){
+    openAnalytics({op:"EMBEDBOW"})
+  },
+  lineNN: function(){
+    openAnalytics({op:"LINENN"})
+  },
 }
 
 function updateCell(idx){
@@ -355,6 +362,23 @@ function update(){
 
 function autosave(){
   writeFile("savefiles/mypoems.json",JSON.stringify(notebook));
+}
+
+function openAnalytics(options){
+
+  var textLines = splitTextToLines(notebook.cells[getCurrentCellIndex()].text);
+  var data = textLines.join('。');
+  // var data = notebook.cells[getCurrentCellIndex()].text
+  var qstr = "q="+data
+  for (var k in options){
+    qstr += "&"+k+"="+options[k];
+  }
+
+  window.open(
+    './analytics.html?'+qstr,
+    'COPE Analytics',
+    'height=600,width=600,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes'
+  )
 }
 
 setInterval(update,200);

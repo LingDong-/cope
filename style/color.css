@@ -4,6 +4,7 @@
   --color-text: rgb(180,180,180);
   --color-text-hl: rgb(200,200,200);
   --color-text-dim: rgb(128,128,128);
+  --color-text-dimmer: rgb(105,105,105);
   --color-icon-hint: rgba(255,255,255,0.2);
   --color-border: rgb(60,60,60);
   --color-border-hover: rgb(90,90,90);
@@ -18,6 +19,7 @@
   --color-warn-line: rgba(255,240,50,0.4);
   --color-button-bg: rgb(40,43,46);
   --color-button-active: rgb(41,82,185);
+  --color-hud-overlay: rgba(0,0,0,0.3);
 }
 
 /*:root {

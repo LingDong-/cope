@@ -265,3 +265,45 @@ input:focus {
   color: var(--color-text);
   text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
 }
+
+.embeddingPoint{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:4px;
+  background:var(--color-text);
+  font-size:8px;
+  color:var(--color-text-dim);
+  transform:translate(-2px,-2px);
+}
+.embeddingPoint:hover{
+  background:var(--color-text-hl);
+  font-size:12px;
+  color:var(--color-text);
+  cursor:crosshair;
+  z-index:1;
+}
+.embeddingPointHl{
+  color:var(--color-valid);
+  background:var(--color-valid);
+}
+
+.nearestNeighborContainer{
+  background:var(--color-hud-overlay);
+  position:fixed;
+  left:0px;
+  top:60px;
+  padding:5px;
+  border-radius: 2px;
+  font-family: monospace;
+  font-size:12px;
+}
+
+.progressBar{
+  background:var(--color-valid);
+  height: 2px;
+  position: fixed;
+  top: 57px;
+  left: 0px;
+  z-index: 1001;
+}
