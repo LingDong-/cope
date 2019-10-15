@@ -1,11 +1,11 @@
 const { remote } = require('electron')
-const { Menu, MenuItem } = remote
+const { Menu, MenuItem, dialog } = remote
 
 const template = [
   { role: 'appMenu' },
-  { role: 'fileMenu', submenu: [
-    {label: "Load/Create New Notebook"}
-  ]},
+  { role: 'fileMenu'
+    //,submenu: [{label: "Load/Create New Notebook", click:function(){}}]
+  },
   { role: 'editMenu' },
   {
     label: "Cells",

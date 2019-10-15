@@ -8,3 +8,6 @@ function loadTSV(path){
 function writeFile(path,text){
   fs.writeFile(__dirname+path,text,function(){});
 }
+function copyFile(path0,path1){
+  fs.copyFileSync(__dirname+path0,__dirname+path1);
+}
