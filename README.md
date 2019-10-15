@@ -16,7 +16,7 @@
 
 ### Binaries
 
-For macOS and Windows binaries, download the latest version on [Releases]() page. [下载链接]()
+For macOS and Windows binaries, download the latest version on [Releases](https://github.com/LingDong-/cope/releases) page. [下载链接](https://github.com/LingDong-/cope/releases)
 
 ### Building
 
