@@ -78,11 +78,7 @@ function splitTextToLines(text){
   return text.replace(/[。，？！\n]/g,"\n").split("\n").filter(x=>x.length && !x.startsWith("#"));
 }
 
-function checkMeter(rhymebook,meter,text){
-  text = filterTraditionalChars(text);
-  var meterLines = meter.split(",")
-  var textLines = splitTextToLines(text);
-
+function _inferRhymeGroupFromText(rhymebook,meterLines,textLines){
   var lasts = [];
   for (var i = 0; i < meterLines.length; i++){
     var chars = [];
@@ -90,13 +86,34 @@ function checkMeter(rhymebook,meter,text){
       continue;
     }
     for (const chr of textLines[i]) { chars.push(chr); }
-    if (meterLines[i][chars.length-1] > 2){
-      lasts.push(chars[chars.length-1]);
+    if (meterLines[i][meterLines[i].length-1] > 2){
+      var l = chars[meterLines[i].length-1];
+      if (l){
+        lasts.push(l);
+      }
     }
   }
-  var rhymeGroup = getRhymeGroupMode(rhymebook,lasts);
+  var r= getRhymeGroupMode(rhymebook,lasts);
+  // console.log(lasts,r);
+  return r;
+}
+
+function inferRhymeGroupFromText(rhymebook,meter,text){
+  text = filterTraditionalChars(text);
+  var meterLines = meter.split(",")
+  var textLines = splitTextToLines(text);
+  return _inferRhymeGroupFromText(rhymebook,meterLines,textLines);
+}
+
+function checkMeter(rhymebook,meter,text){
+  text = filterTraditionalChars(text);
+  var meterLines = meter.split(",")
+  var textLines = splitTextToLines(text);
+
+  var rhymeGroup = _inferRhymeGroupFromText(rhymebook,meterLines,textLines);
 
   var out = [];
+  var usedRhymes = [];
   for (var i = 0; i < meterLines.length; i++){
     var chars = [];
     if (i < textLines.length){
@@ -114,6 +131,10 @@ function checkMeter(rhymebook,meter,text){
             if (!getRhymeGroup(rhymebook,chars[j]).includes(rhymeGroup)){
               return METER_ERR_NO_RHYME;
             }
+            if (usedRhymes.includes(chars[j])){
+              return METER_ERR_DUPLICATE_RHYME;
+            }
+            usedRhymes.push(chars[j]);
           }
           if (standard == TONE_EITHER){
             return METER_VALID

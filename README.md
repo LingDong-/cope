@@ -62,6 +62,15 @@ For each line in the user's poem, *Quan Tang Shi* is searched to find lines that
 上图为在清人黄景仁《绮怀》诗上的运行结果，该诗前两联应为化用李义山，为算法正确发掘。
 
 
+### Markov Chain Edit Suggestions 自动补全
+
+Characters that are not filled or violate tonal rules in the current poem are automatically replaced with suggested edits. Optionally uses 对偶/对仗. The poetry style (诗风) can also be selected from those of Tang Dynasty poets. Although this functionality can also be used to generate entire poems (and it does so pretty well), such use is not encouraged as it does not coincide with the purpose of the software as an editor. Check out [this project of mine](https://github.com/LingDong-/ci-ren) for a full Chinese poetry generator.
+
+
+|![](screenshots/screenshot09.png)|![](screenshots/screenshot10.png)|
+|---|---|
+|![](screenshots/screenshot11.png)|![](screenshots/screenshot12.png)|
+
 ## TODO
 - More data analysis tools
 - Support for 词/曲

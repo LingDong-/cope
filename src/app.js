@@ -235,6 +235,12 @@ var menuFunctions = {
   lineNN: function(){
     openAnalytics({op:"LINENN"})
   },
+  markovSug: function(){
+    openAnalytics({op:"MARKOVSUG",
+      meter:notebook.cells[getCurrentCellIndex()].meter,
+      rhymebook:notebook.cells[getCurrentCellIndex()].rhymebook
+    })
+  }
 }
 
 function updateCell(idx){

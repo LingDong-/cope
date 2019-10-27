@@ -20,6 +20,7 @@ const template = [
     submenu: [
       {label: "Bag-of-Words Embedding",click:menuFunctions.embedBow},
       {label: "Line-wise Nearest Neighbor",click:menuFunctions.lineNN},
+      {label: "Markov Chain Edit Suggestions",click:menuFunctions.markovSug},
     ]
   },
   { role: 'viewMenu' },
