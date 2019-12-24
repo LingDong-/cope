@@ -208,8 +208,15 @@ function insertCell(idx,text){
   notebook.cells.push(cell);
 }
 
+// function removeCell(idx) {
+//   console.log(idx)
+//   mainDom.removeChild(cellDoms[idx])
+//   notebook.cells.splice(idx,1);
+//   cellDoms.splice(idx,1);
+// }
 var menuFunctions = {
-  removeCell: function(idx){
+  removeCell: function(){
+    var idx = Math.max(0,getCurrentCellIndex());
     mainDom.removeChild(cellDoms[idx])
     notebook.cells.splice(idx,1);
     cellDoms.splice(idx,1);
@@ -226,7 +233,7 @@ var menuFunctions = {
   },
   deleteCell: function(){
     if (confirm("This action is not undoable. 此操作不容悔改。")){
-      removeCell(Math.min(0,cellDoms.indexOf(lastFocusTextDom)));
+      menuFunctions.removeCell(Math.min(0,cellDoms.indexOf(lastFocusTextDom)));
     }
   },
   embedBow: function(){
