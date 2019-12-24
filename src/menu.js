@@ -10,9 +10,21 @@ const template = [
   {
     label: "Cells",
     submenu: [
-      {label: "Insert Cell Before", click:menuFunctions.insertCellBefore},
-      {label: "Insert Cell After", click:menuFunctions.insertCellAfter},
-      {label: "Delete Cell", click:menuFunctions.deleteCell},
+      {
+        label: "Insert Cell Before",
+        accelerator: 'CmdOrCtrl+T',
+        click:menuFunctions.insertCellBefore
+      },
+      {
+        label: "Insert Cell After",
+        accelerator: 'Shift+CmdOrCtrl+T',
+        click:menuFunctions.insertCellAfter
+      },
+      {
+        label: "Delete Cell",
+        accelerator: 'CmdOrCtrl+Delete',
+        click:menuFunctions.deleteCell
+      },
     ]
   },
   {
