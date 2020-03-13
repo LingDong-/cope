@@ -40,5 +40,5 @@ const template = [
   { role: 'help' },
 ]
 
-const menu = Menu.buildFromTemplate(template)
+var menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)

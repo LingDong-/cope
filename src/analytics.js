@@ -488,7 +488,7 @@ function doMarkovSug(rhymebook,meter,text,useCorresp=0,fillRhymeFirst=0,authors=
     }
   }
   refLines = [refLinesText,refLinesWeight];
-  // console.log(refLines)
+  console.log(refLines)
 
   function nodesToText(nnodes){
     var t = ""

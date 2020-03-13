@@ -69,8 +69,9 @@ function makeIcon(args){
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${args.width}" height="${args.height}" viewBox="-2 -2 36 36">`+svg+"</svg>"
 }
 
-
-const METERS = loadJSON("/data/meters.json");
+const SHIMETERS = loadJSON("/data/meters.json")
+const CIMETERS = loadJSON("/data/ci-meters.json")
+const METERS = Object.assign({},SHIMETERS,CIMETERS);
 const RHYMEBOOKS = loadJSON("/data/rhymebooks.json");
 const KANGXI = loadJSON("/data/kangxi.json")
 const TC2SC = loadJSON("/data/TC2SC.json")

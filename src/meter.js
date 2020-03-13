@@ -111,6 +111,7 @@ function checkMeter(rhymebook,meter,text){
   var textLines = splitTextToLines(text);
 
   var rhymeGroup = _inferRhymeGroupFromText(rhymebook,meterLines,textLines);
+  var linesSameLength = meterLines.filter(x=>x.length==meterLines[0].length).length == meterLines.length;
 
   var out = [];
   var usedRhymes = [];
@@ -142,7 +143,7 @@ function checkMeter(rhymebook,meter,text){
             return METER_VALID
           }else if (t == TONE_OBLIQUE && (standard == TONE_OBLIQUE || standard == TONE_OBLIQUE_RHYME)){
             return METER_VALID
-          }else if (j % 2 == 0 && j != n -1 ){
+          }else if (j % 2 == 0 && j != n -1 && linesSameLength){
             if (j == n-3 && t == TONE_LEVEL){
               var t1 = chars[j+1] == undefined ? TONE_NOT_A_CHAR : getTonePattern(rhymebook, chars[j+1]);
               var t2 = chars[j+2] == undefined ? TONE_NOT_A_CHAR : getTonePattern(rhymebook, chars[j+2]);

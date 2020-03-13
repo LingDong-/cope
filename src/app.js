@@ -6,20 +6,63 @@ var panelOpen = false;
 
 var mainDom = document.getElementsByClassName("main")[0];
 
+var meterGroupDom = document.getElementsByClassName("selectMeterGroup")[0];
 var meterDom = document.getElementsByClassName("selectMeter")[0];
+
+function updateAnalyticsAvailability(){
+  console.log(meterGroupDom.value)
+  if (typeof menu == 'undefined'){
+    return;
+  }
+  if (meterGroupDom.value=="词牌"){
+    menu.items.filter(x=>x.label=="Analytics")[0].submenu.items.map(x=>x.enabled=false)
+  }else{
+    menu.items.filter(x=>x.label=="Analytics")[0].submenu.items.map(x=>x.enabled=true)
+  }
+}
+
 meterDom.onchange = function(){
+  
   if (lastFocusTextDom){
     bogusFocusChange = true;
     lastFocusTextDom.focus()
     notebook.cells[getCurrentCellIndex()].meter = meterDom.value
+    updateAnalyticsAvailability()
+  }
+  
+}
+meterGroupDom.onchange = function(){
+  updateMeterGroup();
+  meterDom.onchange();
+}
+var meterGroups = {"五言":[],"七言":[],"词牌":[]}
+for (var k in SHIMETERS){
+  if (SHIMETERS[k].split(",")[0].length==5){
+    meterGroups["五言"].push(k)
+  }else{
+    meterGroups["七言"].push(k)
   }
 }
-for (var k in METERS){
+for (var k in CIMETERS){
+  meterGroups["词牌"].push(k)
+}
+for (var k in meterGroups){
   var op = document.createElement('option');
   op.innerHTML = k
   op.value = k
-  meterDom.appendChild(op);
+  meterGroupDom.appendChild(op);
 }
+
+function updateMeterGroup(){
+  meterDom.innerHTML = "";
+  for (var k of meterGroups[meterGroupDom.value]){
+    var op = document.createElement('option');
+    op.innerHTML = k
+    op.value = k
+    meterDom.appendChild(op);
+  }
+}
+updateMeterGroup();
 
 var rhymebookDom = document.getElementsByClassName("selectRhymebook")[0];
 rhymebookDom.onchange = function(){
@@ -148,11 +191,16 @@ try{
 }
 function onTextFocus(that){
   console.log(JSON.stringify(notebook),that)
+  
+
   if (!bogusFocusChange){
     var idx = cellDoms.map(x=>x.getElementsByClassName("textArea")[0]).indexOf(that);
+    meterGroupDom.value = Object.keys(meterGroups).filter(x=>meterGroups[x].includes(notebook.cells[idx].meter))[0];
+    updateMeterGroup();
     meterDom.value = notebook.cells[idx].meter;
     rhymebookDom.value = notebook.cells[idx].rhymebook;
     updateSelectRhymeGroup();
+    updateAnalyticsAvailability()
   }
   bogusFocusChange = false;
 }
@@ -214,6 +262,7 @@ function insertCell(idx,text){
 //   notebook.cells.splice(idx,1);
 //   cellDoms.splice(idx,1);
 // }
+
 var menuFunctions = {
   removeCell: function(){
     var idx = Math.max(0,getCurrentCellIndex());
@@ -380,6 +429,7 @@ function update(){
 function autosave(){
   writeFile("savefiles/mypoems.json",JSON.stringify(notebook));
 }
+
 
 function openAnalytics(options){
 
