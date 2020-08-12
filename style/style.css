@@ -307,3 +307,27 @@ input:focus {
   left: 0px;
   z-index: 1001;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:var(--color-border);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:var(--color-border);
+}
+
+::-webkit-scrollbar-corner {
+  background:none;
+}
